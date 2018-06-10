@@ -4,14 +4,86 @@ author: "Daniel Michelin, Erik Hartig, Nick Swain"
 date: "June 9, 2018"
 output: html_document
 ---
-
+The first thing we wanted to look at was the difference between the ping time over the course of 180 minutes at both Kalamazoo College and our personal residence off campus.  We collected ping data every 5 minutes at each location.  The first thing we wanted to examine was a summary of the data to get a general idea of what was going on.
 ```{r setup, include=FALSE}
-knitr::opts_chunk$set(echo = TRUE)
+knitr::opts_chunk$set(echo = TRUE) #loading in data sets that we need
 ping_times <- read.csv("times.csv")
 normality <- read.csv("NormalityCheckTimes.csv")
 normality2 <- read.csv("NormalityCheckTimes2.csv")
 ```
 
+Kalamazoo College Data
+```{r}
+KalamazooCollege = subset(ping_times,select=TIME,LOC=="KC",drop=T)
+summary(KalamazooCollege)
+```
+Personal Residence Data
+```{r}
+PersonalResidence = subset(ping_times,select=TIME,LOC=="OK",drop=T)
+summary(PersonalResidence)
+```
+
+Based on this data alone we can see that in general it appears that Kalamazoo College appears to be generally faster than the personal residence.  However we wanted to see if this difference in mean ping time was statistically signifigant.  We decided to use a permutation test to do this.
+
+```{r}
+# P value
+obs = mean(KalamazooCollege) - mean(PersonalResidence)
+N <- 10^4
+result <- numeric(N)
+for(i in 1:N){
+  index <- sample(72,36,FALSE)
+  result[i] <- mean(ping_times$TIME[index]) - mean(ping_times$TIME[-index])
+}
+
+# 2 sided test p value
+((sum(result < obs)+1)/N)*2
+```
+Since our value is less than .05 it is safe to say that the difference in means is statistically signifigant.  Now that we know it is signifigant we wanted to find a confidence interval to see what kind of range we could expect.  We used bootstrap to find this interval.
+
+```{r}
+N <- 10^4
+times.diff.mean <- numeric(N)
+for(i in 1:N){
+  x <- sample(KalamazooCollege, 36, replace=TRUE)
+  y <- sample(PersonalResidence,36, replace=TRUE)
+  times.diff.mean[i] <- mean(x) - mean(y)
+}
+hist(times.diff.mean, main = "Bootstrap distribution of difference in means") 
+abline(v = mean(KalamazooCollege) - mean(PersonalResidence), col = "blue", lty = 2)
+dev.new() # Open new graphics device 
+qqnorm(times.diff.mean) 
+qqline(times.diff.mean)
+obs = mean(KalamazooCollege) - mean(PersonalResidence)
+mean(times.diff.mean)
+obs
+quantile(times.diff.mean,c(0.025,0.975))
+```
+
+So this means we can be pretty sure that the school has a ping time that is between 2 and 13 ms faster than our personal network.  With that being known we wanted to examine the kind of distribution that the data had.  With that in mind we than examined a histogram of both of the data sets to try and figure out what kind of distribution we have.
+
+```{r}
+hist(KalamazooCollege)
+hist(PersonalResidence)
+```
+
+Based on this we were not really sure what kind of distribution these were.  Based on the histograms we thought that the personal residence data might be normally distributed so we wanted to test that using qqnorm.
+
+```{r}
+qqnorm(PersonalResidence)
+qqline(PersonalResidence)
+```
+
+Based on this we thought this looked fairly normally distributed with a few outliers or some right skew.  Therefore we wanted to see how close the Kalamazoo College ping time fit the normal distribution.
+
+```{r}
+qqnorm(KalamazooCollege)
+qqline(KalamazooCollege)
+```
+This did not appear to really follow a normal distribution.  ALthough parts of it fell on the line it seems to vary from it quite signifigantly.  After this realization we wanted to test if ping followed a normal distribution as a rule of thumb.  So we ran a test on our personal network that recursivly pinged google every 2 seconds 200 times.  Than we examined the histogram created by that data.
+
+```{r}
+hist(normality$TIME,breaks=50)
+```
 
 ```{r cars}
 #normality check
@@ -31,68 +103,25 @@ summary(normality2$TIME[111:190])
 # Summary statistics
 summary(ping_times)
 hist(ping_times$TIME)
-KC = subset(ping_times,select=TIME,LOC=="KC",drop=T)
-OK = subset(ping_times,select=TIME,LOC=="OK",drop=T)
-hist(KC)
-hist(OK)
-qqnorm(KC)
-qqline(KC)
-qqnorm(OK)
-qqline(OK)
-barplot(KC)
-barplot(OK)
-var(OK)
-var(KC)
-mean(OK)
-mean(KC)
+KalamazooCollege = subset(ping_times,select=TIME,LOC=="KC",drop=T)
+PersonalResidence = subset(ping_times,select=TIME,LOC=="OK",drop=T)
+hist(KalamazooCollege)
+hist(PersonalResidence)
+qqnorm(KalamazooCollege)
+qqline(KalamazooCollege)
+
+barplot(KalamazooCollege)
+barplot(PersonalResidence)
+var(KalamazooCollege)
+var(KalamazooCollege)
+mean(PersonalResidence)
+mean(KalamazooCollege)
 
 #Theoretical confidence interval
-t.test(KC,OK)
+t.test(KalamazooCollege,PersonalResidence)
 
-# 95% confidence interval
-N <- 10^4
-times.diff.mean <- numeric(N)
-for(i in 1:N){
-  x <- sample(KC, 36, replace=TRUE)
-  y <- sample(OK,36, replace=TRUE)
-  times.diff.mean[i] <- mean(x) - mean(y)
-}
-hist(times.diff.mean, main = "Bootstrap distribution of difference in means") 
-abline(v = mean(KC) - mean(OK), col = "blue", lty = 2)
-dev.new() # Open new graphics device 
-qqnorm(times.diff.mean) 
-qqline(times.diff.mean)
-obs = mean(KC) - mean(OK)
-mean(times.diff.mean)
-obs
-quantile(times.diff.mean,c(0.025,0.975))
 
-# P value
-N <- 10^4
-result <- numeric(N)
-for(i in 1:N){
-  index <- sample(72,36,FALSE)
-  result[i] <- mean(ping_times$TIME[index]) - mean(ping_times$TIME[-index])
-}
-
-# 2 sided test p value
-((sum(result < obs)+1)/N)*2
 
 
 ```
 
-## Including Plots
-
-You can also embed plots, for example:
-
-```{r pressure, echo=FALSE}
-GammaNLL <- function(pars, data){
-  alpha <- pars[[1]]
-  theta <- pars[[2]]
-  return (-sum(dgamma(data, shape = alpha, scale = theta, log = TRUE)))
-}
-Fit <- nloptr(x0 = c(guess1, guess2), eval_f = GammaNLL, lb = c(0,0), data = data,
-              opts = list(algorithm = "NLOPT_LN_SBPLX", maxeval = 1e5))
-```
-
-Note that the `echo = FALSE` parameter was added to the code chunk to prevent printing of the R code that generated the plot.
