@@ -7,16 +7,61 @@ output: html_document
 
 ```{r setup, include=FALSE}
 knitr::opts_chunk$set(echo = TRUE)
+ping_times <- read.csv("times.csv")
 ```
 
-## R Markdown
-
-This is an R Markdown document. Markdown is a simple formatting syntax for authoring HTML, PDF, and MS Word documents. For more details on using R Markdown see <http://rmarkdown.rstudio.com>.
-
-When you click the **Knit** button a document will be generated that includes both content as well as the output of any embedded R code chunks within the document. You can embed an R code chunk like this:
 
 ```{r cars}
-summary(cars)
+# Summary statistics
+summary(ping_times)
+hist(ping_times$TIME)
+KC = subset(ping_times,select=TIME,LOC=="KC",drop=T)
+OK = subset(ping_times,select=TIME,LOC=="OK",drop=T)
+hist(KC)
+hist(OK)
+qqnorm(KC)
+qqline(KC)
+qqnorm(OK)
+qqline(OK)
+barplot(KC)
+barplot(OK)
+var(OK)
+var(KC)
+mean(OK)
+mean(KC)
+
+#Theoretical confidence interval
+t.test(KC,OK)
+
+# 95% confidence interval
+N <- 10^4
+times.diff.mean <- numeric(N)
+for(i in 1:N){
+  x <- sample(KC, 36, replace=TRUE)
+  y <- sample(OK,36, replace=TRUE)
+  times.diff.mean[i] <- mean(x) - mean(y)
+}
+hist(times.diff.mean, main = "Bootstrap distribution of difference in means") 
+abline(v = mean(KC) - mean(OK), col = "blue", lty = 2)
+dev.new() # Open new graphics device 
+qqnorm(times.diff.mean) 
+qqline(times.diff.mean)
+obs = mean(KC) - mean(OK)
+mean(times.diff.mean)
+obs
+quantile(times.diff.mean,c(0.025,0.975))
+
+# P value
+N <- 10^4
+result <- numeric(N)
+for(i in 1:N){
+  index <- sample(72,36,FALSE)
+  result[i] <- mean(ping_times$TIME[index]) - mean(ping_times$TIME[-index])
+}
+# 2 sided test p value
+((sum(result < obs)+1)/N)*2
+
+
 ```
 
 ## Including Plots
