@@ -8,10 +8,26 @@ output: html_document
 ```{r setup, include=FALSE}
 knitr::opts_chunk$set(echo = TRUE)
 ping_times <- read.csv("times.csv")
+normality <- read.csv("NormalityCheckTimes.csv")
+normality2 <- read.csv("NormalityCheckTimes2.csv")
 ```
 
 
 ```{r cars}
+#normality check
+hist(normality$TIME,breaks=50)
+qqnorm(normality$TIME)
+qqline(normality$TIME)
+barplot(normality$TIME)
+
+#normality check inside of a "chunk"
+hist(normality2$TIME[111:190],breaks=50)
+qqnorm(normality2$TIME[111:190])
+qqline(normality2$TIME[111:190])
+barplot(normality2$TIME[111:190])
+boxplot(normality2$TIME[111:190])
+summary(normality2$TIME[111:190])
+
 # Summary statistics
 summary(ping_times)
 hist(ping_times$TIME)
@@ -58,6 +74,7 @@ for(i in 1:N){
   index <- sample(72,36,FALSE)
   result[i] <- mean(ping_times$TIME[index]) - mean(ping_times$TIME[-index])
 }
+
 # 2 sided test p value
 ((sum(result < obs)+1)/N)*2
 
@@ -69,7 +86,13 @@ for(i in 1:N){
 You can also embed plots, for example:
 
 ```{r pressure, echo=FALSE}
-plot(pressure)
+GammaNLL <- function(pars, data){
+  alpha <- pars[[1]]
+  theta <- pars[[2]]
+  return (-sum(dgamma(data, shape = alpha, scale = theta, log = TRUE)))
+}
+Fit <- nloptr(x0 = c(guess1, guess2), eval_f = GammaNLL, lb = c(0,0), data = data,
+              opts = list(algorithm = "NLOPT_LN_SBPLX", maxeval = 1e5))
 ```
 
 Note that the `echo = FALSE` parameter was added to the code chunk to prevent printing of the R code that generated the plot.
