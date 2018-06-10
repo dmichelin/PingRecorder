@@ -10,6 +10,7 @@ knitr::opts_chunk$set(echo = TRUE) #loading in data sets that we need
 ping_times <- read.csv("times.csv")
 normality <- read.csv("NormalityCheckTimes.csv")
 normality2 <- read.csv("NormalityCheckTimes2.csv")
+normalitySchool <- read.csv("NormalityCheckTimesSchool.csv")
 ```
 
 Kalamazoo College Data
@@ -99,6 +100,14 @@ qqline(normality2$TIME[111:190])
 barplot(normality2$TIME[111:190])
 boxplot(normality2$TIME[111:190])
 summary(normality2$TIME[111:190])
+
+
+#normality check at school
+hist(normalitySchool$TIME,breaks=50)
+qqnorm(normalitySchool$TIME)
+qqline(normalitySchool$TIME)
+barplot(normalitySchool$TIME)
+
 
 # Summary statistics
 summary(ping_times)
