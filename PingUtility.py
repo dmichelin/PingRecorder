@@ -7,11 +7,12 @@ def run_test():
   # every 5 minutes, write down the ping time
   num_tests = 0
   print("Please leave this program running until it self-exits")
-  while num_tests < 60:
+  while num_tests < 36:
       print("starting test " + str(num_tests+1) + " out of 36")
       with open('times.txt', 'a') as the_file:
               the_file.write(label+',%d\n'%get_ping())
       num_tests = num_tests+1
+      time.sleep(60*5)
   print("Program finished, please check times.txt")
 
 
