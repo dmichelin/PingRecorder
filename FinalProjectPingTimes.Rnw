@@ -130,7 +130,7 @@ bias = mean(times.diff.mean)- obs
 variance = var(times.diff.mean)
 @
 \begin{figure}
-\caption{Bootstrap Evaluation}
+\caption{Properties of the Bootstrapped difference in means}
 <<>>=
 obs
 bias

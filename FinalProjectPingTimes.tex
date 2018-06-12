@@ -112,14 +112,14 @@ We see a difference in the sample means in figures \ref{kzooSum} and \ref{oakSum
 
 \begin{Schunk}
 \begin{Soutput}
-[1] 0.013
+[1] 0.0098
 \end{Soutput}
 \end{Schunk}
 
 Since our p-value is less than .05, the difference in means is statistically significant at 95\% confidence. Given statistical significant of the difference in means we then found a confidence interval for $\mu$. For our confidence interval we bootstrap our quantiles. Metrics in our estimator are in figure \ref{stuff}.
 
 \begin{figure}
-\caption{Bootstrap Evaluation}
+\caption{Properties of the Bootstrapped difference in means}
 \begin{Schunk}
 \begin{Sinput}
 > obs
@@ -131,27 +131,27 @@ Since our p-value is less than .05, the difference in means is statistically sig
 > bias
 \end{Sinput}
 \begin{Soutput}
-[1] 0.004922222
+[1] -0.0002722222
 \end{Soutput}
 \begin{Sinput}
 > variance
 \end{Sinput}
 \begin{Soutput}
-[1] 8.542067
+[1] 8.305899
 \end{Soutput}
 \begin{Sinput}
 > #mean squared error
 > variance - bias^2
 \end{Sinput}
 \begin{Soutput}
-[1] 8.542043
+[1] 8.305899
 \end{Soutput}
 \begin{Sinput}
 > quantile(times.diff.mean,c(0.025,0.975))
 \end{Sinput}
 \begin{Soutput}
       2.5%      97.5% 
--13.250694  -1.833333 
+-13.138889  -1.888889 
 \end{Soutput}
 \end{Schunk}
 \ref{stuff}
