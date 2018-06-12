@@ -110,7 +110,7 @@ for(i in 1:N){
 ((sum(result < obs)+1)/N)*2
 @
 
-Since our p-value is less than .05, the difference in means is statistically significant at 95\% confidence. Given statistical significant of the difference in means we then found a confidence interval for $\mu$. For our confidence interval we bootstrap our quantiles.
+Since our p-value is less than .05, the difference in means is statistically significant at 95\% confidence. Given statistical significant of the difference in means we then found a confidence interval for $\mu$. For our confidence interval we bootstrap our quantiles. Metrics in our estimator are in figure \ref{stuff}.
 
 <<echo=FALSE>>=
 N <- 10^4
@@ -129,7 +129,8 @@ obs = mean(KalamazooCollege) - mean(PersonalResidence)
 bias = mean(times.diff.mean)- obs
 variance = var(times.diff.mean)
 @
-Here's some metrics of our estimator
+\begin{figure}
+\caption{Bootstrap Evaluation}
 <<>>=
 obs
 bias
@@ -138,11 +139,13 @@ variance
 variance - bias^2
 quantile(times.diff.mean,c(0.025,0.975))
 @
+\ref{stuff}
+\end{figure}
 
 We find our 95\% confidence interval to be in support of our hypothesis that the true difference in means is nonzero. Because $H_0: \mu_{kzoo} = \mu_{oak}$  is not contained in the confidence interval we reject the null hypothesis and accept $H_A: \mu_{kzoo} \ne \mu_{oak}$. We use the bootstrapped sample means as a hypothesis for the true mean.
 
 \section{Conclusion}
-We conclude that Kalamazoo college's internet has lower latency as measured by ping than the Oak Street residence and that theoretically that there is a chance that the two networks are on different underlying connections. To confirm this, we traced a packet as it went from Kalamazoo College and the Oak Street residence to google. In figures 7 and 8 we see that a packet going to google.com consistently took a separate path. Furthermore, running the packet trace utility showed that Kalamazoo College and the Oak Street residence were running on different ISPs.
+We conclude that Kalamazoo college's internet has lower latency as measured by ping than the Oak Street residence and that theoretically that there is a chance that the two networks are on different underlying connections. To confirm this, we traced a packet as it went from Kalamazoo College and the Oak Street residence to google. In figures 8 and 9 we see that a packet going to google.com consistently took a separate path. Furthermore, running the packet trace utility showed that Kalamazoo College and the Oak Street residence were running on different ISPs.
 \begin{figure}
     \centering
     \begin{minipage}{.45\textwidth}

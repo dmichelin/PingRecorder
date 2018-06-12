@@ -1,4 +1,4 @@
-This is pdfTeX, Version 3.14159265-2.6-1.40.19 (MiKTeX 2.9.6630 64-bit) (preloaded format=pdflatex 2018.4.7)  11 JUN 2018 21:02
+This is pdfTeX, Version 3.14159265-2.6-1.40.19 (MiKTeX 2.9.6630 64-bit) (preloaded format=pdflatex 2018.4.7)  11 JUN 2018 21:51
 entering extended mode
 **./FinalProjectPingTimes.tex
 (FinalProjectPingTimes.tex
@@ -313,51 +313,62 @@ File: FinalProjectPingTimes-005.pdf Graphic file (type pdf)
 <use FinalProjectPingTimes-005.pdf>
 Package pdftex.def Info: FinalProjectPingTimes-005.pdf  used on input line 78.
 (pdftex.def)             Requested size: 276.00105pt x 276.0139pt.
-[5 <./FinalProjectPingTimes-004.pdf>] [6 <./FinalProjectPingTimes-005.pdf>]
-<NetworkMapHome2.png, id=62, 844.95676pt x 328.8285pt>
+
+LaTeX Warning: Reference `stuff' on page 5 undefined on input line 119.
+
+
+LaTeX Warning: Reference `stuff' on page 5 undefined on input line 157.
+
+<NetworkMapHome2.png, id=43, 844.95676pt x 328.8285pt>
 File: NetworkMapHome2.png Graphic file (type png)
 <use NetworkMapHome2.png>
-Package pdftex.def Info: NetworkMapHome2.png  used on input line 165.
+Package pdftex.def Info: NetworkMapHome2.png  used on input line 168.
 (pdftex.def)             Requested size: 155.24443pt x 82.49794pt.
-<NetworkMapSchool.png, id=64, 745.5855pt x 305.943pt>
+<NetworkMapSchool.png, id=45, 745.5855pt x 305.943pt>
 File: NetworkMapSchool.png Graphic file (type png)
 <use NetworkMapSchool.png>
-Package pdftex.def Info: NetworkMapSchool.png  used on input line 172.
+Package pdftex.def Info: NetworkMapSchool.png  used on input line 175.
 (pdftex.def)             Requested size: 155.24649pt x 82.49367pt.
 
-Underfull \hbox (badness 1097) in paragraph at lines 173--173
-[]\T1/aer/m/n/10 Figure 8: Net-work packet trace
+Underfull \hbox (badness 1097) in paragraph at lines 176--176
+[]\T1/aer/m/n/10 Figure 9: Net-work packet trace
  []
 
-[7 <./NetworkMapHome2.png> <./NetworkMapSchool.png>] (FinalProjectPingTimes.aux
-) ) 
+[5 <./FinalProjectPingTimes-004.pdf>] [6 <./FinalProjectPingTimes-005.pdf>]
+[7] [8 <./NetworkMapHome2.png> <./NetworkMapSchool.png>]
+(FinalProjectPingTimes.aux)
+
+LaTeX Warning: There were undefined references.
+
+ ) 
 Here is how much of TeX's memory you used:
- 2709 strings out of 493305
- 40820 string characters out of 3129368
- 90330 words of memory out of 3000000
- 6189 multiletter control sequences out of 15000+200000
- 26995 words of font info for 61 fonts, out of 3000000 for 9000
+ 2716 strings out of 493305
+ 40879 string characters out of 3129368
+ 91330 words of memory out of 3000000
+ 6191 multiletter control sequences out of 15000+200000
+ 29781 words of font info for 66 fonts, out of 3000000 for 9000
  1141 hyphenation exceptions out of 8191
  41i,8n,25p,2384b,300s stack positions out of 5000i,500n,10000p,200000b,50000s
-<C:/Users/Daniel/AppData/Local/Programs/MiKTeX 2.9/fonts/type1/public/amsfon
-ts/cm/cmbx12.pfb><C:/Users/Daniel/AppData/Local/Programs/MiKTeX 2.9/fonts/type1
-/public/amsfonts/cm/cmbx9.pfb><C:/Users/Daniel/AppData/Local/Programs/MiKTeX 2.
-9/fonts/type1/public/amsfonts/cm/cmmi10.pfb><C:/Users/Daniel/AppData/Local/Prog
-rams/MiKTeX 2.9/fonts/type1/public/amsfonts/cm/cmmi7.pfb><C:/Users/Daniel/AppDa
-ta/Local/Programs/MiKTeX 2.9/fonts/type1/public/amsfonts/cm/cmmi9.pfb><C:/Users
-/Daniel/AppData/Local/Programs/MiKTeX 2.9/fonts/type1/public/amsfonts/cm/cmr10.
+<C:/Users/Daniel/AppData/Local/Programs/MiKTeX 2.9/fonts/type1/public/amsfont
+s/cm/cmbx10.pfb><C:/Users/Daniel/AppData/Local/Programs/MiKTeX 2.9/fonts/type1/
+public/amsfonts/cm/cmbx12.pfb><C:/Users/Daniel/AppData/Local/Programs/MiKTeX 2.
+9/fonts/type1/public/amsfonts/cm/cmbx9.pfb><C:/Users/Daniel/AppData/Local/Progr
+ams/MiKTeX 2.9/fonts/type1/public/amsfonts/cm/cmmi10.pfb><C:/Users/Daniel/AppDa
+ta/Local/Programs/MiKTeX 2.9/fonts/type1/public/amsfonts/cm/cmmi7.pfb><C:/Users
+/Daniel/AppData/Local/Programs/MiKTeX 2.9/fonts/type1/public/amsfonts/cm/cmmi9.
 pfb><C:/Users/Daniel/AppData/Local/Programs/MiKTeX 2.9/fonts/type1/public/amsfo
-nts/cm/cmr12.pfb><C:/Users/Daniel/AppData/Local/Programs/MiKTeX 2.9/fonts/type1
-/public/amsfonts/cm/cmr17.pfb><C:/Users/Daniel/AppData/Local/Programs/MiKTeX 2.
-9/fonts/type1/public/amsfonts/cm/cmr7.pfb><C:/Users/Daniel/AppData/Local/Progra
-ms/MiKTeX 2.9/fonts/type1/public/amsfonts/cm/cmr9.pfb><C:/Users/Daniel/AppData/
-Local/Programs/MiKTeX 2.9/fonts/type1/public/amsfonts/cm/cmsltt10.pfb><C:/Users
-/Daniel/AppData/Local/Programs/MiKTeX 2.9/fonts/type1/public/amsfonts/cm/cmsy10
-.pfb><C:/Users/Daniel/AppData/Local/Programs/MiKTeX 2.9/fonts/type1/public/amsf
-onts/cm/cmtt10.pfb>
-Output written on FinalProjectPingTimes.pdf (7 pages, 1430317 bytes).
+nts/cm/cmr10.pfb><C:/Users/Daniel/AppData/Local/Programs/MiKTeX 2.9/fonts/type1
+/public/amsfonts/cm/cmr12.pfb><C:/Users/Daniel/AppData/Local/Programs/MiKTeX 2.
+9/fonts/type1/public/amsfonts/cm/cmr17.pfb><C:/Users/Daniel/AppData/Local/Progr
+ams/MiKTeX 2.9/fonts/type1/public/amsfonts/cm/cmr7.pfb><C:/Users/Daniel/AppData
+/Local/Programs/MiKTeX 2.9/fonts/type1/public/amsfonts/cm/cmr9.pfb><C:/Users/Da
+niel/AppData/Local/Programs/MiKTeX 2.9/fonts/type1/public/amsfonts/cm/cmsltt10.
+pfb><C:/Users/Daniel/AppData/Local/Programs/MiKTeX 2.9/fonts/type1/public/amsfo
+nts/cm/cmsy10.pfb><C:/Users/Daniel/AppData/Local/Programs/MiKTeX 2.9/fonts/type
+1/public/amsfonts/cm/cmtt10.pfb>
+Output written on FinalProjectPingTimes.pdf (8 pages, 1440150 bytes).
 PDF statistics:
- 112 PDF objects out of 1000 (max. 8388607)
+ 119 PDF objects out of 1000 (max. 8388607)
  0 named destinations out of 1000 (max. 500000)
  35 words of extra memory for PDF output out of 10000 (max. 10000000)
 
