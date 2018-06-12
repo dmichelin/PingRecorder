@@ -49,7 +49,7 @@ for(i in 1:N){
   y <- sample(PersonalResidence,36, replace=TRUE)
   times.diff.mean[i] <- mean(x) - mean(y)
 }
-hist(times.diff.mean, main = "Bootstrap distribution of difference in means") 
+hist(times.diff.mean, main = "Bootstrap distribution of difference in means")
 abline(v = mean(KalamazooCollege) - mean(PersonalResidence), col = "blue", lty = 2)
 dev.new() # Open new graphics device 
 qqnorm(times.diff.mean) 

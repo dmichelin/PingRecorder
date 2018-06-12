@@ -1,5 +1,5 @@
 \documentclass{article}
-
+\usepackage{graphicx}
 \begin{document}
 \SweaveOpts{concordance=TRUE}
 \title{Estimation of True Difference in Internet Latency Between Charter Internet and Kalamazoo College ISP}
@@ -8,38 +8,95 @@
 \begin{abstract}
 In this paper we estimate the true $\mu$ of the difference between ping times between Kalamazoo College and a residence within a mile located at 416 Oak St. We hypothesize that a significant difference in latency as measured by ping times is likely indicative of substantially different network architecture. 
 \end{abstract}
-\section{Background}
-A good network connection can be evaluated in a number of ways varying from measuring the amount of data over a network 
-\section{Supporting Statistical Theory}
+\section{Introduction}
+A good network connection can be evaluated in a number of ways. One way it can be looked at is through a measure called latency, which is the time taken to send a packet of information from one point to another. A packet of information is a fundamental unit of data sent over packet-controlled networks such as the Internet. Another common way is to look at bandwidth, or the amount of data that can be transmitted at a single point of time. The difference between the two can be thought as analgous to delivering mail by hand. If a single packet can be thought of as a letter, then the latency can be thought of as the time it takes for the mail-person to get a single letter from point A to point B. Bandwidth by the same analogy can be thought of the number of letters that the mailperson is transmitting at a particular time. While it can be easy to confuse the two, a packet can have a low bandwidth and high latency, and vice versa. In the former case that mailperson could be transmitting mail using a high speed motorcycle: not much mail can go through at any particular time, but the mail that is on the network is rapidly transmitted. The latter case could be transmitting mail through a large truck: high capacity, low speed. Although TCP/IP, the fundamental architecture of the internet, has a maximum packet size of 64 Kilobytes the realistic maximum size of a packet is capped out usually at 1500 bytes, the maximum size of an ethernet packet. Most consumer internet connections run through ethernet, meaning that a single packet of information typically has a negligible effect on a network. Bandwidth is typically effected by traffic on the network, latency is not unless if the bandwidth has run out on a network. On most consumer internet plans the various tiers of paid internet service have the same latency, and a differing latency between two networks often means that there is something physically different between the networks, such as a shorter physical connection or faster wires (DSL vs Fiber optic for instance.). Ping is a software utility tests the network latency of a single packet and is featured across all popular operating systems. Our hypothesis is that there is a difference in means between Kalamazoo College's and the Oak Street residence's latencies as measured by ping time to google.com. We can state this as:
 
+
+\begin{centering}
+$H_0: \mu_{kzoo} = \mu_{oak}$ \\
+\end{centering}
+
+\begin{centering}
+$H_A: \mu_{kzoo} \ne \mu_{oak}$ \\
+\end{centering}
+
+
+The alternative hypothesis is indicative of two things, the first being that the network itself is faster, and/or possibly that the network follows a different path to get to google.
 \section{Methods}
-We collected four datasets, two to estimate population parameters and two for exploratory data analysis. Samples collected from Kalamazoo College and the Oak Street residence that are used to estimate the $\mu$ of the population of the difference in means were collected at approximately the same time to control for overall network business. Laptops tested used the same wifi chip to account for possible increase in latency there. Latency from router distance was controlled by being approximately the same distance from each one. Latency derived from the router itself is negligable. 
+We collected four datasets, two to estimate population parameters and two for exploratory data analysis. Samples collected from Kalamazoo College and the Oak Street residence that are used to estimate the $\mu$ of the population of the difference in means were collected at approximately the same time (within seconds of each other) to control for overall network business. These times were conducted by two laptops running a sample collection script in python that is included in the appendix. The Oak Street residence was chosen because of it's short distance from Kalamazoo College to minimize the impact of absolute physical distance being a factor in the latency difference, as large discrepancies in physical distance alone can contribute to wide differences in latency times, such as comparing a laptop in Google's headquarter's latency to google compared to a laptop in a Starbucks in Kalamazoo, MI. The script calls the Windows ping command line utility then parses the output for the correct value. The script takes 36 samples at an interval of 5 minutes each and records the location and latency. Laptops tested used the same Wifi chip to account for possible increase in latency there. Latency from router distance was controlled by being approximately the same distance from each one (about 6 feet with line of sight). Latency derived from the router itself is negligable. Tests were independent as a single packet is highly unlikely to impact the network in a measurable way.
 \section{Results}
-The first thing we wanted to look at was the difference between the ping time over the course of 180 minutes at both Kalamazoo College and our personal residence off campus.  We collected ping data every 5 minutes at each location.  The first thing we wanted to examine was a summary of the data to get a general idea of what was going on.
-<<>>=
+<<echo=FALSE>>=
 ping_times <- read.csv("times.csv")
 normality <- read.csv("NormalityCheckTimes.csv")
 normality2 <- read.csv("NormalityCheckTimes2.csv")
 normalitySchool <- read.csv("NormalityCheckTimesSchool.csv")
-@
-Kalamazoo College Data
-<<>>=
+
 KalamazooCollege = subset(ping_times,select=TIME,LOC=="KC",drop=T)
+#Personal Residence Data
+
+PersonalResidence = subset(ping_times,select=TIME,LOC=="OK",drop=T)
+@
+\begin{figure}
+\centering
+\caption{Histogram of observed Kalamazoo College Ping Times}
+<<fig=TRUE>>=
+hist(KalamazooCollege)
+@
+\label{fig:kzootimes}
+\end{figure}
+
+\begin{figure}
+\centering
+\caption{Histogram of observed Oak Street residence Ping Times}
+<<fig=TRUE>>=
+hist(PersonalResidence)
+@
+\label{fig:personalresidencetimes}
+\end{figure}
+To get an idea of the sampling distributions we look at histograms of the two distributions and summary descriptions of each. In figures \ref{fig:kzootimes} and \ref{fig:personalresidencetimes} the distributions appear non normal. We confirm the non normality in figures \ref{residenceNorm} and \ref{kzooNorm}. Because of the non-normality it is important that for estimating the population parameter $\mu$ of the difference in means between the two sampling distributions that we perform tests on a bootstrapped distribution.
+
+
+
+\begin{figure}
+\centering
+\caption{QQNorm compared with normal line of the data at the Oak Street residence}
+<<fig=TRUE>>=
+qqnorm(PersonalResidence)
+qqline(PersonalResidence)
+@
+\label{residenceNorm}
+\end{figure}
+
+\begin{figure}
+\centering
+\caption{QQNorm compared with normal line of the data at the Oak Street residence}
+<<fig=TRUE,fig.width=5>>=
+qqnorm(KalamazooCollege)
+qqline(KalamazooCollege)
+@
+\label{kzooNorm}
+\end{figure}
+
+
+We see a difference in the sample means in figures \ref{kzooSum} and \ref{oakSum} . We then performed a bootstrap T test to see if the results are statistically significant.
+\begin{figure}
+\centering
+\caption{Kalamazoo College}
+<<>>=
 summary(KalamazooCollege)
 @
-Personal Residence Data
+\label{kzooSum}
+\end{figure}
+\begin{figure}
+\centering
+\caption{Personal Residence Data}
 <<>>=
-PersonalResidence = subset(ping_times,select=TIME,LOC=="OK",drop=T)
 summary(PersonalResidence)
 @
+\label{oakSum}
+\end{figure}
 
-Based on this data alone we can see that in general it appears that Kalamazoo College appears to be generally faster than the personal residence.  However we wanted to see if this difference in mean ping time was statistically significant.  We decided to use a permutation test to do this.
-
-
-\section{Calculation}
-\section{Conclusions}
-
-<<>>=
+<<echo=False>>=
 # P value
 obs = mean(KalamazooCollege) - mean(PersonalResidence)
 N <- 10^4
@@ -52,9 +109,10 @@ for(i in 1:N){
 # 2 sided test p value
 ((sum(result < obs)+1)/N)*2
 @
-Since our value is less than .05 it is safe to say that the difference in means is statistically signifigant.  Now that we know it is signifigant we wanted to find a confidence interval to see what kind of range we could expect.  We used bootstrap to find this interval.
 
-<<>>=
+Since our p-value is less than .05, the difference in means is statistically significant at 95\% confidence. Given statistical significant of the difference in means we then found a confidence interval for $\mu$. For our confidence interval we bootstrap our quantiles.
+
+<<echo=FALSE>>=
 N <- 10^4
 times.diff.mean <- numeric(N)
 for(i in 1:N){
@@ -68,86 +126,37 @@ dev.new() # Open new graphics device
 qqnorm(times.diff.mean) 
 qqline(times.diff.mean)
 obs = mean(KalamazooCollege) - mean(PersonalResidence)
-mean(times.diff.mean)
+bias = mean(times.diff.mean)- obs
+variance = var(times.diff.mean)
+@
+Here's some metrics of our estimator
+<<>>=
 obs
+bias
+variance
+#mean squared error
+variance - bias^2
 quantile(times.diff.mean,c(0.025,0.975))
 @
 
-So this means we can be pretty sure that the school has a ping time that is between 2 and 13 ms faster than our personal network.  With that being known we wanted to examine the kind of distribution that the data had.  With that in mind we than examined a histogram of both of the data sets to try and figure out what kind of distribution we have.
+We find our 95\% confidence interval to be in support of our hypothesis that the true difference in means is nonzero. Because $H_0: \mu_{kzoo} = \mu_{oak}$  is not contained in the confidence interval we reject the null hypothesis and accept $H_A: \mu_{kzoo} \ne \mu_{oak}$. We use the bootstrapped sample means as a hypothesis for the true mean.
 
-<<>>=
-hist(KalamazooCollege)
-hist(PersonalResidence)
-@
-
-Based on this we were not really sure what kind of distribution these were.  Based on the histograms we thought that the personal residence data might be normally distributed so we wanted to test that using qqnorm.
-
-<<>>=
-qqnorm(PersonalResidence)
-qqline(PersonalResidence)
-@
-
-Based on this we thought this looked fairly normally distributed with a few outliers or some right skew.  Therefore we wanted to see how close the Kalamazoo College ping time fit the normal distribution.
-
-<<>>=
-qqnorm(KalamazooCollege)
-qqline(KalamazooCollege)
-@
-This did not appear to really follow a normal distribution.  ALthough parts of it fell on the line it seems to vary from it quite signifigantly.  After this realization we wanted to test if ping followed a normal distribution as a rule of thumb.  So we ran a test on our personal network that recursivly pinged google every 2 seconds 200 times.  Than we examined the histogram created by that data.
-
-<<>>=
-hist(normality$TIME,breaks=50)
-@
-
-<<>>=
-#normality check
-hist(normality$TIME,breaks=50)
-qqnorm(normality$TIME)
-qqline(normality$TIME)
-barplot(normality$TIME)
-
-#normality check inside of a "chunk"
-hist(normality2$TIME[111:190],breaks=50)
-qqnorm(normality2$TIME[111:190])
-qqline(normality2$TIME[111:190])
-barplot(normality2$TIME[111:190])
-boxplot(normality2$TIME[111:190])
-summary(normality2$TIME[111:190])
-
-
-#normality check at school
-hist(normalitySchool$TIME,breaks=50)
-qqnorm(normalitySchool$TIME)
-qqline(normalitySchool$TIME)
-barplot(normalitySchool$TIME)
-
-
-# Summary statistics
-summary(ping_times)
-hist(ping_times$TIME)
-KalamazooCollege = subset(ping_times,select=TIME,LOC=="KC",drop=T)
-PersonalResidence = subset(ping_times,select=TIME,LOC=="OK",drop=T)
-hist(KalamazooCollege)
-hist(PersonalResidence)
-qqnorm(KalamazooCollege)
-qqline(KalamazooCollege)
-
-barplot(KalamazooCollege)
-barplot(PersonalResidence)
-var(KalamazooCollege)
-var(KalamazooCollege)
-mean(PersonalResidence)
-mean(KalamazooCollege)
-
-#Theoretical confidence interval
-t.test(KalamazooCollege,PersonalResidence)
-
-
-
-
-@
-
-
-
-
+\section{Conclusion}
+We conclude that Kalamazoo college's internet has lower latency as measured by ping than the Oak Street residence and that theoretically that there is a chance that the two networks are on different underlying connections. To confirm this, we traced a packet as it went from Kalamazoo College and the Oak Street residence to google. In figures 7 and 8 we see that a packet going to google.com consistently took a separate path. Furthermore, running the packet trace utility showed that Kalamazoo College and the Oak Street residence were running on different ISPs.
+\begin{figure}
+    \centering
+    \begin{minipage}{.45\textwidth}
+        \centering
+        \includegraphics[width=\linewidth, height=0.15\textheight]{NetworkMapHome2.png}
+        \caption{Packet network trace, Kalamazoo College to Google}
+        \label{fig:prob1_6_2}
+    \end{minipage}%
+    \hspace{0.05\linewidth}
+    \begin{minipage}{0.45\textwidth}
+        \centering
+        \includegraphics[width=\linewidth, height=0.15\textheight]{NetworkMapSchool.png}
+        \caption{Network packet trace graph, 416 Oak St to Google}
+        \label{fig:prob1_6_1}
+    \end{minipage}
+\end{figure}
 \end{document}

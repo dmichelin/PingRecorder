@@ -1,4 +1,4 @@
-This is pdfTeX, Version 3.14159265-2.6-1.40.19 (MiKTeX 2.9.6630 64-bit) (preloaded format=pdflatex 2018.4.7)  11 JUN 2018 14:11
+This is pdfTeX, Version 3.14159265-2.6-1.40.19 (MiKTeX 2.9.6630 64-bit) (preloaded format=pdflatex 2018.4.7)  11 JUN 2018 21:02
 entering extended mode
 **./FinalProjectPingTimes.tex
 (FinalProjectPingTimes.tex
@@ -20,11 +20,6 @@ File: size10.clo 2014/09/29 v1.4h Standard LaTeX file (size option)
 \abovecaptionskip=\skip41
 \belowcaptionskip=\skip42
 \bibindent=\dimen102
-) (C:/PROGRA~1/R/R-34~1.4/share/texmf/tex/latex\Sweave.sty
-Package: Sweave 
-
-("C:\Users\Daniel\AppData\Local\Programs\MiKTeX 2.9\tex\latex\base\ifthen.sty"
-Package: ifthen 2014/09/29 v1.1c Standard LaTeX ifthen package (DPC)
 )
 ("C:\Users\Daniel\AppData\Local\Programs\MiKTeX 2.9\tex\latex\graphics\graphicx
 .sty"
@@ -55,6 +50,11 @@ File: pdftex.def 2018/01/08 v1.0l Graphics/color driver for pdftex
 ))
 \Gin@req@height=\dimen103
 \Gin@req@width=\dimen104
+) (C:/PROGRA~1/R/R-34~1.4/share/texmf/tex/latex\Sweave.sty
+Package: Sweave 
+
+("C:\Users\Daniel\AppData\Local\Programs\MiKTeX 2.9\tex\latex\base\ifthen.sty"
+Package: ifthen 2014/09/29 v1.1c Standard LaTeX ifthen package (DPC)
 )
 ("C:\Users\Daniel\AppData\Local\Programs\MiKTeX 2.9\tex\latex\fancyvrb\fancyvrb
 .sty"
@@ -281,41 +281,83 @@ LaTeX Font Info:    External font `cmex10' loaded for size
 (Font)              <9> on input line 10.
 LaTeX Font Info:    External font `cmex10' loaded for size
 (Font)              <5> on input line 10.
-LaTeX Font Info:    External font `cmex10' loaded for size
-(Font)              <7> on input line 17.
  [1
 
 {C:/Users/Daniel/AppData/Local/MiKTeX/2.9/pdftex/config/pdftex.map}]
-LaTeX Font Info:    Try loading font information for T1+aett on input line 21.
+LaTeX Font Info:    External font `cmex10' loaded for size
+(Font)              <7> on input line 17.
+LaTeX Font Info:    Try loading font information for T1+aett on input line 33.
 
 ("C:\Users\Daniel\AppData\Local\Programs\MiKTeX 2.9\tex\latex\ae\t1aett.fd"
 File: t1aett.fd 1997/11/16 Font definitions for T1/aett.
 )
-[2] [3] [4] [5] (FinalProjectPingTimes.aux) ) 
+<FinalProjectPingTimes-002.pdf, id=13, 433.62pt x 433.62pt>
+File: FinalProjectPingTimes-002.pdf Graphic file (type pdf)
+<use FinalProjectPingTimes-002.pdf>
+Package pdftex.def Info: FinalProjectPingTimes-002.pdf  used on input line 37.
+(pdftex.def)             Requested size: 276.00105pt x 276.0139pt.
+<FinalProjectPingTimes-003.pdf, id=14, 433.62pt x 433.62pt>
+File: FinalProjectPingTimes-003.pdf Graphic file (type pdf)
+<use FinalProjectPingTimes-003.pdf>
+Package pdftex.def Info: FinalProjectPingTimes-003.pdf  used on input line 49.
+(pdftex.def)             Requested size: 276.00105pt x 276.0139pt.
+<FinalProjectPingTimes-004.pdf, id=15, 433.62pt x 433.62pt>
+File: FinalProjectPingTimes-004.pdf Graphic file (type pdf)
+<use FinalProjectPingTimes-004.pdf>
+Package pdftex.def Info: FinalProjectPingTimes-004.pdf  used on input line 65.
+(pdftex.def)             Requested size: 276.00105pt x 276.0139pt.
+
+[2] [3 <./FinalProjectPingTimes-002.pdf>] [4 <./FinalProjectPingTimes-003.pdf>]
+<FinalProjectPingTimes-005.pdf, id=42, 433.62pt x 433.62pt>
+File: FinalProjectPingTimes-005.pdf Graphic file (type pdf)
+<use FinalProjectPingTimes-005.pdf>
+Package pdftex.def Info: FinalProjectPingTimes-005.pdf  used on input line 78.
+(pdftex.def)             Requested size: 276.00105pt x 276.0139pt.
+[5 <./FinalProjectPingTimes-004.pdf>] [6 <./FinalProjectPingTimes-005.pdf>]
+<NetworkMapHome2.png, id=62, 844.95676pt x 328.8285pt>
+File: NetworkMapHome2.png Graphic file (type png)
+<use NetworkMapHome2.png>
+Package pdftex.def Info: NetworkMapHome2.png  used on input line 165.
+(pdftex.def)             Requested size: 155.24443pt x 82.49794pt.
+<NetworkMapSchool.png, id=64, 745.5855pt x 305.943pt>
+File: NetworkMapSchool.png Graphic file (type png)
+<use NetworkMapSchool.png>
+Package pdftex.def Info: NetworkMapSchool.png  used on input line 172.
+(pdftex.def)             Requested size: 155.24649pt x 82.49367pt.
+
+Underfull \hbox (badness 1097) in paragraph at lines 173--173
+[]\T1/aer/m/n/10 Figure 8: Net-work packet trace
+ []
+
+[7 <./NetworkMapHome2.png> <./NetworkMapSchool.png>] (FinalProjectPingTimes.aux
+) ) 
 Here is how much of TeX's memory you used:
- 2668 strings out of 493305
- 39840 string characters out of 3129368
- 89266 words of memory out of 3000000
- 6155 multiletter control sequences out of 15000+200000
+ 2709 strings out of 493305
+ 40820 string characters out of 3129368
+ 90330 words of memory out of 3000000
+ 6189 multiletter control sequences out of 15000+200000
  26995 words of font info for 61 fonts, out of 3000000 for 9000
  1141 hyphenation exceptions out of 8191
- 41i,6n,25p,632b,290s stack positions out of 5000i,500n,10000p,200000b,50000s
-<C:/Users/Daniel/AppData/Local/Pro
-grams/MiKTeX 2.9/fonts/type1/public/amsfonts/cm/cmbx12.pfb><C:/Users/Daniel/App
-Data/Local/Programs/MiKTeX 2.9/fonts/type1/public/amsfonts/cm/cmbx9.pfb><C:/Use
-rs/Daniel/AppData/Local/Programs/MiKTeX 2.9/fonts/type1/public/amsfonts/cm/cmmi
-10.pfb><C:/Users/Daniel/AppData/Local/Programs/MiKTeX 2.9/fonts/type1/public/am
-sfonts/cm/cmmi9.pfb><C:/Users/Daniel/AppData/Local/Programs/MiKTeX 2.9/fonts/ty
-pe1/public/amsfonts/cm/cmr10.pfb><C:/Users/Daniel/AppData/Local/Programs/MiKTeX
- 2.9/fonts/type1/public/amsfonts/cm/cmr12.pfb><C:/Users/Daniel/AppData/Local/Pr
-ograms/MiKTeX 2.9/fonts/type1/public/amsfonts/cm/cmr17.pfb><C:/Users/Daniel/App
-Data/Local/Programs/MiKTeX 2.9/fonts/type1/public/amsfonts/cm/cmr9.pfb><C:/User
-s/Daniel/AppData/Local/Programs/MiKTeX 2.9/fonts/type1/public/amsfonts/cm/cmslt
-t10.pfb><C:/Users/Daniel/AppData/Local/Programs/MiKTeX 2.9/fonts/type1/public/a
-msfonts/cm/cmtt10.pfb>
-Output written on FinalProjectPingTimes.pdf (5 pages, 147354 bytes).
+ 41i,8n,25p,2384b,300s stack positions out of 5000i,500n,10000p,200000b,50000s
+<C:/Users/Daniel/AppData/Local/Programs/MiKTeX 2.9/fonts/type1/public/amsfon
+ts/cm/cmbx12.pfb><C:/Users/Daniel/AppData/Local/Programs/MiKTeX 2.9/fonts/type1
+/public/amsfonts/cm/cmbx9.pfb><C:/Users/Daniel/AppData/Local/Programs/MiKTeX 2.
+9/fonts/type1/public/amsfonts/cm/cmmi10.pfb><C:/Users/Daniel/AppData/Local/Prog
+rams/MiKTeX 2.9/fonts/type1/public/amsfonts/cm/cmmi7.pfb><C:/Users/Daniel/AppDa
+ta/Local/Programs/MiKTeX 2.9/fonts/type1/public/amsfonts/cm/cmmi9.pfb><C:/Users
+/Daniel/AppData/Local/Programs/MiKTeX 2.9/fonts/type1/public/amsfonts/cm/cmr10.
+pfb><C:/Users/Daniel/AppData/Local/Programs/MiKTeX 2.9/fonts/type1/public/amsfo
+nts/cm/cmr12.pfb><C:/Users/Daniel/AppData/Local/Programs/MiKTeX 2.9/fonts/type1
+/public/amsfonts/cm/cmr17.pfb><C:/Users/Daniel/AppData/Local/Programs/MiKTeX 2.
+9/fonts/type1/public/amsfonts/cm/cmr7.pfb><C:/Users/Daniel/AppData/Local/Progra
+ms/MiKTeX 2.9/fonts/type1/public/amsfonts/cm/cmr9.pfb><C:/Users/Daniel/AppData/
+Local/Programs/MiKTeX 2.9/fonts/type1/public/amsfonts/cm/cmsltt10.pfb><C:/Users
+/Daniel/AppData/Local/Programs/MiKTeX 2.9/fonts/type1/public/amsfonts/cm/cmsy10
+.pfb><C:/Users/Daniel/AppData/Local/Programs/MiKTeX 2.9/fonts/type1/public/amsf
+onts/cm/cmtt10.pfb>
+Output written on FinalProjectPingTimes.pdf (7 pages, 1430317 bytes).
 PDF statistics:
- 59 PDF objects out of 1000 (max. 8388607)
+ 112 PDF objects out of 1000 (max. 8388607)
  0 named destinations out of 1000 (max. 500000)
- 5 words of extra memory for PDF output out of 10000 (max. 10000000)
+ 35 words of extra memory for PDF output out of 10000 (max. 10000000)
 
